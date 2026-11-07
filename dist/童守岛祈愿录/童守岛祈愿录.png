@@ -2841,7 +2841,7 @@
           "constant": true,
           "selective": false,
           "insertion_order": 14720,
-          "enabled": false,
+          "enabled": true,
           "position": "after_char",
           "use_regex": true,
           "extensions": {
@@ -2887,7 +2887,7 @@
           "constant": true,
           "selective": false,
           "insertion_order": 14720,
-          "enabled": false,
+          "enabled": true,
           "position": "after_char",
           "use_regex": true,
           "extensions": {
