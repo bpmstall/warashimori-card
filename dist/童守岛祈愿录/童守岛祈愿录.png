@@ -74,7 +74,7 @@
           "disabled": false,
           "runOnEdit": false,
           "findRegex": "<StatusPlaceHolderImpl/>",
-          "replaceString": "```\n<body>\n<script>\n$('body').load('https://testingcf.jsdelivr.net/gh/bpmstall/warashimori-card@v1.0.0/dist/童守岛祈愿录/界面/状态栏/index.html')\n</script>\n</body>\n```",
+          "replaceString": "```\n<body>\n<script>\n$('body').load('https://testingcf.jsdelivr.net/gh/bpmstall/warashimori-card@v1.1.0/dist/童守岛祈愿录/界面/状态栏/index.html')\n</script>\n</body>\n```",
           "trimStrings": [],
           "placement": [
             2
@@ -110,7 +110,7 @@
             "id": "faee3c91-df15-4e88-9af0-f2825112b4aa",
             "enabled": true,
             "type": "script",
-            "content": "import 'https://testingcf.jsdelivr.net/gh/bpmstall/warashimori-card@v1.0.0/dist/童守岛祈愿录/脚本/变量结构/index.js';",
+            "content": "import 'https://testingcf.jsdelivr.net/gh/bpmstall/warashimori-card@v1.1.0/dist/童守岛祈愿录/脚本/变量结构/index.js';",
             "info": "",
             "button": {
               "enabled": true,
