@@ -2,3 +2,7 @@ allowBuilds:
   '@parcel/watcher': true
   unrs-resolver: true
   vue-demi: true
+
+# 本机（Windows）上 pnpm 默认的符号链接/junction 布局会被系统判为「不受信任的装入点」而无法遍历，
+# 导致 webpack / dump_schema 全部 ERR_MODULE_NOT_FOUND。改用 hoisted（扁平真实目录）布局。
+nodeLinker: hoisted
