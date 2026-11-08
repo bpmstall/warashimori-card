@@ -18,6 +18,22 @@ declare module '*.md' {
   const content: string;
   export default content;
 }
+declare module '*.png' {
+  const url: string;
+  export default url;
+}
+declare module '*.jpg' {
+  const url: string;
+  export default url;
+}
+declare module '*.jpeg' {
+  const url: string;
+  export default url;
+}
+declare module '*.webp' {
+  const url: string;
+  export default url;
+}
 declare module '*.yaml' {
   const content: any;
   export default content;

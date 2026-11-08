@@ -183,9 +183,14 @@ function tavern_sync(compiler: webpack.Compiler) {
 }
 
 function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Configuration {
-  const should_obfuscate = fs
-    .readFileSync(path.join(import.meta.dirname, entry.script), 'utf-8')
-    .includes('@obfuscate');
+  const entry_source = fs.readFileSync(path.join(import.meta.dirname, entry.script), 'utf-8');
+  const should_obfuscate = entry_source.includes('@obfuscate');
+  /**
+   * `@standalone`：这一份产物是**独立文档**（`<iframe src>` 加载，如 `界面/地图`），
+   * 自己的 realm 里没有酒馆页面提供的 `Vue` / `$` / `_` 等全局，
+   * 因此不能走 `externals`，必须把依赖全量打进包里。
+   */
+  const should_bundle_all = entry_source.includes('@standalone');
   const script_filepath = path.parse(entry.script);
 
   return (_env, argv) => ({
@@ -230,6 +235,18 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
           test: /\.vue$/,
           use: 'vue-loader',
           exclude: /node_modules/,
+        },
+        {
+          /**
+           * 位图资源（底图 / 区域横幅 / 地标头像）。
+           *
+           * 只在 `界面/地图` 用到：那份是**自托管独立页面**，图片作为独立文件随 dist 发布，
+           * 由 jsDelivr 各自缓存；不内联成 base64 —— 内联会把页面从几十 KB 推回 MB 级，
+           * 且底图/横幅/头像会跟着每一次开楼重新下载。
+           */
+          test: /\.(png|jpe?g|webp|avif|gif)$/i,
+          type: 'asset/resource',
+          generator: { filename: 'assets/[name].[contenthash:8][ext]' },
         },
         {
           oneOf: [
@@ -438,8 +455,8 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
     )
       .concat(
         { apply: watch_tavern_helper },
-        { apply: schema_dump },
-        { apply: tavern_sync },
+        // { apply: schema_dump },
+        // { apply: tavern_sync },
         new VueLoaderPlugin(),
         unpluginAutoImport({
           dts: true,
@@ -521,6 +538,11 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
     },
     externals: ({ context, request }, callback) => {
       if (!context || !request) {
+        return callback();
+      }
+
+      // 独立文档（`@standalone`）没有宿主提供的全局，依赖一律打包
+      if (should_bundle_all) {
         return callback();
       }
 
