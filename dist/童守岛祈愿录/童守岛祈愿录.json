@@ -74,7 +74,7 @@
           "disabled": false,
           "runOnEdit": false,
           "findRegex": "<StatusPlaceHolderImpl/>",
-          "replaceString": "```\n<body>\n<script>\n(function () {\n  var hosts = ['testingcf.jsdelivr.net', 'fastly.jsdelivr.net', 'gcore.jsdelivr.net', 'cdn.jsdelivr.net'];\n  var path = '/gh/bpmstall/warashimori-card@v1.5.14/dist/童守岛祈愿录/界面/状态栏/index.html';\n  function attempt(i) {\n    if (i >= hosts.length) {\n      document.body.innerHTML = '<p style=\"color:#b3402f;font-size:12px\">状态栏加载失败：四条 CDN 均不可达。请 Ctrl+F5 强刷页面后重试；仍失败请检查网络。</p>';\n      return;\n    }\n    $.get('https://' + hosts[i] + path)\n      .done(function (html) { $('body').html(html); })\n      .fail(function () { attempt(i + 1); });\n  }\n  $(function () { attempt(0); });\n})();\n</script>\n</body>\n```",
+          "replaceString": "```\n<body>\n<script>\n(function () {\n  var hosts = ['testingcf.jsdelivr.net', 'fastly.jsdelivr.net', 'gcore.jsdelivr.net', 'cdn.jsdelivr.net'];\n  var path = '/gh/bpmstall/warashimori-card@v1.5.15/dist/童守岛祈愿录/界面/状态栏/index.html';\n  function attempt(i) {\n    if (i >= hosts.length) {\n      document.body.innerHTML = '<p style=\"color:#b3402f;font-size:12px\">状态栏加载失败：四条 CDN 均不可达。请 Ctrl+F5 强刷页面后重试；仍失败请检查网络。</p>';\n      return;\n    }\n    $.get('https://' + hosts[i] + path)\n      .done(function (html) { $('body').html(html); })\n      .fail(function () { attempt(i + 1); });\n  }\n  $(function () { attempt(0); });\n})();\n</script>\n</body>\n```",
           "trimStrings": [],
           "placement": [
             2
@@ -110,7 +110,7 @@
             "id": "faee3c91-df15-4e88-9af0-f2825112b4aa",
             "enabled": true,
             "type": "script",
-            "content": "import 'https://testingcf.jsdelivr.net/gh/bpmstall/warashimori-card@v1.5.14/dist/童守岛祈愿录/脚本/变量结构/index.js';",
+            "content": "import 'https://testingcf.jsdelivr.net/gh/bpmstall/warashimori-card@v1.5.15/dist/童守岛祈愿录/脚本/变量结构/index.js';",
             "info": "",
             "button": {
               "enabled": true,
@@ -127,7 +127,7 @@
             "id": "8aff8634-1646-41c2-bbc2-5915dce4e636",
             "enabled": true,
             "type": "script",
-            "content": "import 'https://testingcf.jsdelivr.net/gh/bpmstall/warashimori-card@v1.5.14/dist/童守岛祈愿录/脚本/浮窗/index.js';",
+            "content": "import 'https://testingcf.jsdelivr.net/gh/bpmstall/warashimori-card@v1.5.15/dist/童守岛祈愿录/脚本/浮窗/index.js';",
             "info": "",
             "button": {
               "enabled": true,
